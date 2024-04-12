@@ -1,0 +1,58 @@
+:root {
+  --white: white;
+  --gray: gray;
+  --black: black;
+  --red: rgba(255, 0, 0, 0.1);
+  --green: rgba(0, 255, 0, 0.1);
+  --blue: rgba(0, 0, 255, 0.1);
+  --cyan: rgba(0, 255, 255, 0.1);
+  --magenta: rgba(255, 0, 255, 0.1);
+  --yellow: rgba(255, 255, 0, 0.1);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+html {
+  color: var(--gray);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--gray);
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: var(--black);
+}
+
+aside {
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+aside ul {
+  list-style: none;
+  row-gap: 0.5em;
+}
+
+aside ul button {
+  width: 100%;
+}
+
+aside ul button:not(:disabled) {
+  cursor: pointer;
+}
+
+#content {
+  background: url('/img/logo.svg') no-repeat center / cover;
+}

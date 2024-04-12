@@ -1,0 +1,46 @@
+@import './common.css';
+
+body {
+  display: grid;
+  grid-auto-rows: 10vh 1fr 10vh;
+}
+
+header {
+  background-color: var(--red);
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-content: center;
+  column-gap: 5vw;
+}
+
+nav {
+  display: grid;
+  grid-auto-flow: column;
+  align-content: center;
+  column-gap: 1em;
+}
+
+main {
+  color: var(--black);
+  background-color: var(--green);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 20vw 1fr;
+}
+
+aside {
+  background-color: var(--cyan);
+}
+
+footer {
+  background-color: var(--blue);
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-auto-flow: column;
+}
+
+aside ul {
+  display: grid;
+}

@@ -1,0 +1,50 @@
+@import './common.css';
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: var(--red);
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5vw;
+}
+
+nav {
+  display: flex;
+  column-gap: 1em;
+}
+
+main {
+  color: var(--black);
+  background-color: var(--green);
+  flex-grow: 1;
+  display: flex;
+}
+
+aside {
+  background-color: var(--cyan);
+  flex-basis: 20vw;
+  flex-shrink: 0;
+}
+
+footer {
+  background-color: var(--blue);
+  height: 10vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+aside ul {
+  display: flex;
+  flex-direction: column;
+}
+
+#content {
+  flex-grow: 1;
+}
