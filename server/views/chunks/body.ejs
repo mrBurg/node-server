@@ -32,9 +32,13 @@
       <li><button type="button" id="rss">RSS Web Service</button></li>
     </ul>
   </aside>
-  <div id="content"></div>
-  <% } else { %>
+  <div id="content">
+    <%= content %>
+  </div>
+  <% } else if (pageStatus == 300) { %>
   <%- include('./not-found'); %>
+  <% } else { %>
+  <div>Unknown page status</div>
   <% } %>
 </main>
 <footer>&#169; Burhonov F.&nbsp;</footer>

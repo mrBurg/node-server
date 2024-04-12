@@ -26,6 +26,10 @@ const credentials = {
   }),
 };
 
+const ejsOptions = {
+  views: [path.join(__dirname, 'views')],
+};
+
 async function server(req: http.IncomingMessage, res: http.ServerResponse) {
   switch (req.url) {
     case '/favicon.ico':
@@ -39,8 +43,8 @@ async function server(req: http.IncomingMessage, res: http.ServerResponse) {
       res.write(
         ejs.render(
           readFileSync(path.join(__dirname, 'views', 'index.ejs'), encoding),
-          { title: 'Index page' },
-          { views: [path.join(__dirname, 'views')] }
+          { title: 'Index page', content: req.url },
+          ejsOptions
         )
       );
 
@@ -52,8 +56,8 @@ async function server(req: http.IncomingMessage, res: http.ServerResponse) {
       res.end(
         ejs.render(
           readFileSync(path.join(__dirname, 'views', 'flex.ejs'), encoding),
-          { title: 'Flex page' },
-          { views: [path.join(__dirname, 'views')] }
+          { title: 'Flex page', content: req.url },
+          ejsOptions
         )
       );
 
@@ -68,7 +72,7 @@ async function server(req: http.IncomingMessage, res: http.ServerResponse) {
             url: req.url,
             pageStatus: 300,
           },
-          { views: [path.join(__dirname, 'views')] }
+          ejsOptions
         )
       );
 
@@ -122,7 +126,7 @@ async function server(req: http.IncomingMessage, res: http.ServerResponse) {
       ejs.render(
         readFileSync(path.join(__dirname, 'views', '404.ejs'), encoding),
         { title: 'Flex page' },
-        { views: [path.join(__dirname, 'views')] }
+        ejsOptions
       )
     );
 }
