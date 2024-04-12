@@ -66,7 +66,7 @@ async function server(req: http.IncomingMessage, res: http.ServerResponse) {
           {
             title: 'Not found',
             url: req.url,
-            pageStatus: 404,
+            pageStatus: 300,
           },
           { views: [path.join(__dirname, 'views')] }
         )

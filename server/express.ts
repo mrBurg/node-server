@@ -34,37 +34,33 @@ app
   // .enable('verbose errors')
   .use(express.static(path.join(__dirname, '../public')))
   .use(favicon(path.join(__dirname, '../public', 'favicon.ico')))
-  .get('/', (_req, res) => {
-    res.render('index', { title: 'Index page' });
-  })
-  .get('/flex', (_req, res) => {
-    res.render('flex', { title: 'Flex page' });
-  })
-  .get('/db', async (_req, res) => {
-    const data = await db_query(`
+  .get('/', (_req, res) => res.render('index', { title: 'Index page' }))
+  .get('/flex', (_req, res) => res.render('flex', { title: 'Flex page' }))
+  .get('/db', async (_req, res) =>
+    res.send(
+      await db_query(`
         SELECT * FROM public.game
         ORDER BY ga_id ASC
-      `);
-
-    res.send(data);
-  })
-  .use((req, res) => {
+      `)
+    )
+  )
+  .use('/not-found', (req, res) =>
+    res.status(300).render('index', {
+      title: 'Not found',
+      url: req.url,
+      pageStatus: 300,
+    })
+  )
+  .use('/redirect', (_req, res) => res.redirect(301, '/'))
+  // TODO https://wanago.io/2019/03/25/node-js-typescript-7-creating-a-server-and-receiving-requests/
+  .use('/upload', (_req, _res, next) => next())
+  .use((_req, res) =>
     res.status(404).format({
-      html: () => {
-        res.render('index', {
-          title: 'Not found',
-          url: req.url,
-          pageStatus: 404,
-        });
-      },
-      json: () => {
-        res.json({ error: 'Not found' });
-      },
-      default: () => {
-        res.type('txt').send('Not found');
-      },
-    });
-  });
+      html: () => res.render('404'),
+      json: () => res.json({ error: 'Not found' }),
+      default: () => res.type('txt').send('Not found'),
+    })
+  );
 /* .listen(PORT, () =>
     console.log(
       `\x1b[92m${PROTOCOL} App ready on =>\n  host -> [\x1b[102m\x1b[30m ${HOSTNAME} \x1b[0m\x1b[92m]\n  port -> :[\x1b[102m\x1b[30m ${PORT} \x1b[0m\x1b[92m]\n\x1b[0m`
