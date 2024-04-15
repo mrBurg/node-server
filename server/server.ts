@@ -125,7 +125,7 @@ async function server(req: http.IncomingMessage, res: http.ServerResponse) {
     .end(
       ejs.render(
         readFileSync(path.join(__dirname, 'views', '404.ejs'), encoding),
-        { title: 'Flex page' },
+        { title: '404 page' },
         ejsOptions
       )
     );
