@@ -34,8 +34,12 @@ app
   // .enable('verbose errors')
   .use(express.static(path.join(__dirname, '../public')))
   .use(favicon(path.join(__dirname, '../public', 'favicon.ico')))
-  .get('/', (_req, res) => res.render('index', { title: 'Index page' }))
-  .get('/flex', (_req, res) => res.render('flex', { title: 'Flex page' }))
+  .get('/', (req, res) =>
+    res.render('index', { title: 'Index page', content: req.url })
+  )
+  .get('/flex', (req, res) =>
+    res.render('flex', { title: 'Flex page', content: req.url })
+  )
   .get('/db', async (_req, res) =>
     res.send(
       await db_query(`
